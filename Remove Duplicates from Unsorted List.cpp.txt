@@ -1,0 +1,22 @@
+void removeDuplicates(Node* head) {
+    std::unordered_map<int, bool>nums;
+    
+    if(head == nullptr || head && head->next == nullptr)
+        return;
+    
+    Node* ant = head;
+    Node* curr = ant->next;
+    nums[ant->data] = true;
+    
+    while(curr != nullptr) {
+        while(nums.find(curr->data) == nums.end()) {
+            nums[curr->data] = true;
+            ant = ant->next;
+            curr = curr->next;  
+        }
+        
+        ant->next = curr->next;
+        curr = ant->next;
+
+    }
+}

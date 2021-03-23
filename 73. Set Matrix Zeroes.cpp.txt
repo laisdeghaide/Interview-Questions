@@ -1,0 +1,28 @@
+
+class Solution {
+public:
+    void setZeroes(vector<vector<int>>& matrix) {
+        int row_len = matrix.size(), column_len = matrix[0].size();
+        unordered_set<int>row;
+        unordered_set<int>column; 
+        
+        for(int i=0; i<row_len; i++) {
+            for(int j=0; j<column_len; j++) {
+                if(matrix[i][j] == 0) {
+                    row.insert(i);
+                    column.insert(j);
+                }
+            }
+        }
+            
+        for(int i=0; i<row_len; i++) {
+            for(int j=0; j<column_len; j++) {     
+                if(row.count(i) || column.count(j))
+                    matrix[i][j] = 0;
+            }
+        }
+    }
+};
+
+//Time Complexity: O(MxN)
+//Space Complexity: O(M+N)

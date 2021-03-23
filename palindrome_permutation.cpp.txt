@@ -1,0 +1,23 @@
+bool isPermutationOfPalindrome(string s)
+{
+    unordered_map<char, int> count;
+    
+    for(char c : s) {
+        if(c != ' ')
+            count[toupper(c)]++;
+    }
+    
+    bool odd = false;
+    
+    for(auto key : count) {
+        if(key.second % 2 == 1) //se for impar
+            if(!odd) {
+                odd = true; //modifico a flag para true 
+            }
+            else {
+                return false;
+            }
+    }
+    
+    return true;
+}
