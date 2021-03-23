@@ -1,3 +1,6 @@
+Time Complexity: O(N)
+Space Complexity: O(N)
+
 void removeDuplicates(Node* head) {
     std::unordered_map<int, bool>nums;
     
@@ -18,5 +21,31 @@ void removeDuplicates(Node* head) {
         ant->next = curr->next;
         curr = ant->next;
 
+    }
+}
+
+
+//OR
+
+void removeDuplicates(Node* head) {
+    std::unordered_map<int, bool>nums;
+    
+    if(head == nullptr || head && head->next == nullptr)
+        return;
+    
+    Node* ant = head;
+    Node* curr = ant->next;
+    nums[ant->data] = true;
+    
+    while(curr != nullptr) {
+        if(nums.find(curr->data) == nums.end()) {
+            nums[curr->data] = true;
+            ant = curr;
+        }
+        
+        else {
+            ant->next = curr->next;
+        }
+        curr = ant->next;
     }
 }
