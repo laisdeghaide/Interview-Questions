@@ -1,4 +1,4 @@
-string lookandsay(string &s) {
+string lookAndSay(conts string &s) {
 	string result = "";
 	int len = s.length();
 
