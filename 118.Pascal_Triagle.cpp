@@ -1,6 +1,34 @@
 class Solution {
 public:
-    vector<int> auxGenerate(vector<int> &subPascal) {
+    
+    vector<vector<int>> generate(int numRows) {
+        vector<int> subPascal;
+        vector<vector<int>> pascal;
+        
+        pascal.push_back({1});
+        
+        if(numRows == 1) return pascal;
+        
+
+        for(int i = 1; i < numRows; i++) {
+           subPascal.push_back(1);
+            
+            for(int j = 0; j < pascal[i-1].size()-1; j++){
+                subPascal.push_back(pascal[i-1][j] + pascal[i-1][j+1]);
+            }
+            
+            subPascal.push_back(1);
+            pascal.push_back(subPascal);
+            subPascal.clear();
+        }
+        
+        return pascal;
+    }
+};
+
+/* PRIMEIRA ABORDAGEM
+
+vector<int> auxGenerate(vector<int> &subPascal) {
         vector<int> subPascalAux;
         
         subPascalAux.push_back(subPascal[0]);
@@ -39,3 +67,4 @@ public:
         return pascal;
     }
 };
+*/
